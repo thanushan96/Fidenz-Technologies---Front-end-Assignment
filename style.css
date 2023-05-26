@@ -1,0 +1,84 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #1f2128; /* Custom background color for the entire page */
+  color: #ffffff; /* Custom text color to ensure readability on the dark background */
+}
+
+h1 {
+  background-image: url('D:/Downloads/Assignment Resources/Design/Header bg.jpg'); /* Path to your header image */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  background-size: cover; /* Adjust the background size to cover the header */
+  background-position: center; /* Adjust the background position to center */
+  text-align: center;
+  padding: 100px 0; /* Adjust the padding as needed to position the text */
+}
+
+#weather-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  gap: 10px; /* Gap between rows */
+  justify-items: center;
+}
+
+.city-card {
+  width: 300px;
+  height: 200px;
+  padding: 10px;
+  border: 1px solid #7a7a7a;
+  border-radius: 5px;
+  position: relative;
+  overflow: visible;
+  color: #ffffff; /* White text color */
+  margin-right: 10px; /* Adjust the margin to create a gap between columns */
+}
+
+.city-card:last-child {
+  margin-right: 0; /* Remove the margin from the last card to prevent extra gap */
+}
+
+
+
+
+.city-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background-image: url('D:/Downloads/Assignment Resources/Design/clouds.png');
+  background-color: rgba(56, 231, 208, 0.2); /* Aqua color with 50% opacity */
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.city-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background-color: #383b47; /* Dark gray color */
+}
+
+
+
+
+
+
+
+
+.city-name {
+  font-weight: bold;
+  text-align: center;
+}
+
+.city-temp {
+  text-align: center;
+}
+
+.city-status {
+  text-align: center;
+}
