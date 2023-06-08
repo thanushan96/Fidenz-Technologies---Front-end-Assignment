@@ -7,6 +7,25 @@ const WeatherInfo = () => {
   const [processedCityData, setProcessedCityData] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
 
+  const formatTime = (timestamp) => {
+    const date = new Date(timestamp * 1000);
+    const options = {
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true
+    };
+    return date.toLocaleString('en-US', options);
+  };
+
+  const formatDate = (timestamp) => {
+    const date = new Date(timestamp * 1000);
+    const options = {
+      month: 'short',
+      day: 'numeric'
+    };
+    return date.toLocaleString('en-US', options);
+  };
+
   useEffect(() => {
     const citiesData = {
       "List": [
@@ -39,13 +58,56 @@ const WeatherInfo = () => {
 
             const cityData = citiesData.List.find(city => city.CityCode === cityCode);
 
+            // return (
+            //   <div className='city-card' key={cityCode}>
+            //     <div className="city-card-top">
+            //       <div className="city-name">{cityData.CityName}, {cityWeather.sys.country}</div>
+            //       <div className="city-time">{formatTime(cityWeather.dt)}, {formatDate(cityWeather.dt)}</div>
+            //       <div className="city-temp">Temperature: {cityWeather.main.temp} °C</div>
+            //       <div className="city-status">Weather: {cityWeather.weather[0].description}</div>
+                 
+            //     </div>
+            //     <div className="city-card-bottom">
+            //       <p>Testing</p>
+            //     </div>
+            //   </div>
+            // );
+
+            // <div className="city-status">Weather: {cityWeather.weather[0].description}</div>
             return (
-              <div key={cityCode} className="city-card">
-                <div className="city-name">{cityData.CityName}</div>
-                <div className="city-temp">Temperature: {cityWeather.main.temp} °C</div>
-                <div className="city-status">Weather: {cityWeather.weather[0].description}</div>
+              <div className='city-card' key={cityCode}>
+                <div className="city-card-top">
+                  <div className="city-name">{cityData.CityName}, {cityWeather.sys.country}</div>
+                  <div className="city-temp">{Math.round(cityWeather.main.temp)} °C</div>
+  
+                  <div className="city-clouds"> {cityWeather.clouds.all > 50 ? 'Cloudy' : 'Clear'}</div>
+                  <div className="city-time">{formatTime(cityWeather.dt)}, {formatDate(cityWeather.dt)}</div>
+         
+                  <div className="city-temp-min">
+                  <h4>Temp Min: {Math.floor(cityWeather.main.temp_min)}°C</h4>
+                  <h4>Temp Min: {Math.floor(cityWeather.main.temp_max)}°C</h4>
+                 
+                  </div>
+                  
+                </div>
+                <div className="city-card-bottom">
+                <img src='assets/line.png' alt=''></img>
+
+                <div className="city-pressure">Pressure: {cityWeather.main.pressure} hPa</div>
+                  <div className="city-humidity">Humidity: {cityWeather.main.humidity}%</div>
+                  <div className="city-visibility">Visibility: {cityWeather.visibility / 1000.0} km</div>
+
+                  <div className="city-wind">
+                  <img src='assets/arrow.png' alt=''></img>
+                  {cityWeather.wind.speed} m/s {cityWeather.wind.deg} Degree</div>
+                  <div className="city-sunrise">
+                  <h4>Sunrise: {formatTime(cityWeather.sys.sunrise)}</h4>
+                  <h4>Sunset: {formatTime(cityWeather.sys.sunset)}</h4>
+                  </div>
+                </div>
               </div>
             );
+            
           }
 
           return null;
@@ -72,8 +134,16 @@ const WeatherInfo = () => {
   };
 
   return (
-    <div>
-      <h1>Weather App</h1>
+    <div >
+    <div class =" header">
+      
+      <div class="weather">
+        <img src="../assets/cloud_icon.png"  alt='' />
+        <h1>Weather App</h1>
+
+      </div>
+
+
       <div className="search-container">
         <input
           type="text"
@@ -83,7 +153,16 @@ const WeatherInfo = () => {
         />
         <button onClick={handleSearch}>Add City</button>
       </div>
+
+    </div>
+      
+      
       <div id="weather-container"></div>
+
+      <footer>
+      2021 Fidenz Technologies
+    </footer>
+
     </div>
   );
 };
