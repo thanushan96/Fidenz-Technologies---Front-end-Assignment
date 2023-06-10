@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './css/style.css';
+import { citiesData} from './citiesData';
+import { apiKey, baseUrl, unitType} from './apiHelper';
 
 const WeatherInfo = () => {
   const [processedCityData, setProcessedCityData] = useState([]);
@@ -27,15 +29,7 @@ const WeatherInfo = () => {
   };
 
   useEffect(() => {
-    const citiesData = {
-      "List": [
-        {"CityCode": "1248991", "CityName": "Colombo", "Temp": "33.0", "Status": "Clouds"},
-        {"CityCode": "1850147", "CityName": "Tokyo", "Temp": "8.6", "Status": "Clear"},
-        {"CityCode": "2644210", "CityName": "Liverpool", "Temp": "16.5", "Status": "Rain"},
-        {"CityCode": "2147714", "CityName": "Sydney", "Temp": "27.3", "Status": "Rain"},
-        {"CityCode": "4930956", "CityName": "Boston", "Temp": "4.2", "Status": "Mist"}
-      ]
-    };
+
 
     const getWeatherIconClass = (condition) => {
       switch (condition) {
@@ -60,9 +54,7 @@ const WeatherInfo = () => {
 
     const cityCodes = citiesData.List.map(city => city.CityCode);
 
-    const apiKey = '5a860fd4bdc18e1897feaaf0c8a30a67';
-    const baseUrl = 'http://api.openweathermap.org/data/2.5/group';
-    const unitType = 'metric';
+
 
     const url = `${baseUrl}?id=${cityCodes.join(',')}&units=${unitType}&appid=${apiKey}`;
 
