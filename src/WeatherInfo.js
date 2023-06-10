@@ -58,22 +58,6 @@ const WeatherInfo = () => {
 
             const cityData = citiesData.List.find(city => city.CityCode === cityCode);
 
-            // return (
-            //   <div className='city-card' key={cityCode}>
-            //     <div className="city-card-top">
-            //       <div className="city-name">{cityData.CityName}, {cityWeather.sys.country}</div>
-            //       <div className="city-time">{formatTime(cityWeather.dt)}, {formatDate(cityWeather.dt)}</div>
-            //       <div className="city-temp">Temperature: {cityWeather.main.temp} °C</div>
-            //       <div className="city-status">Weather: {cityWeather.weather[0].description}</div>
-                 
-            //     </div>
-            //     <div className="city-card-bottom">
-            //       <p>Testing</p>
-            //     </div>
-            //   </div>
-            // );
-
-            // <div className="city-status">Weather: {cityWeather.weather[0].description}</div>
             return (
               <div className='city-card' key={cityCode}>
                 <div className="city-card-top">
@@ -138,7 +122,7 @@ const WeatherInfo = () => {
     <div class =" header">
       
       <div class="weather">
-        <img src="../assets/cloud_icon.png"  alt='' />
+        <img src='assets/cloud_icon.png' alt=''></img>
         <h1>Weather App</h1>
 
       </div>
