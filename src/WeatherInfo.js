@@ -37,6 +37,27 @@ const WeatherInfo = () => {
       ]
     };
 
+    const getWeatherIconClass = (condition) => {
+      switch (condition) {
+        case 'Broken Clouds':
+          return 'weather-icon-broken-clouds';
+        case 'Clear':
+          return 'weather-icon-clear-sky';
+        case 'Few Clouds':
+          return 'weather-icon-few-clouds';
+        case 'Light Rain':
+          return 'weather-icon-light-rain';
+        case 'Mist':
+          return 'weather-icon-mist';
+        case 'Clouds':
+          return 'weather-icon-clouds';
+        // Add more cases for other weather conditions as needed
+        default:
+          return '';
+      }
+    };
+    
+
     const cityCodes = citiesData.List.map(city => city.CityCode);
 
     const apiKey = '5a860fd4bdc18e1897feaaf0c8a30a67';
@@ -61,10 +82,24 @@ const WeatherInfo = () => {
             return (
               <div className='city-card' key={cityCode}>
                 <div className="city-card-top">
+                
                   <div className="city-name">{cityData.CityName}, {cityWeather.sys.country}</div>
-                  <div className="city-temp">{Math.round(cityWeather.main.temp)} °C</div>
-  
-                  <div className="city-clouds"> {cityWeather.clouds.all > 50 ? 'Cloudy' : 'Clear'}</div>
+                  <div className="city-temp"><h4>{Math.round(cityWeather.main.temp)} °C</h4></div>
+                 
+
+
+                  <div className="city-condition">
+                      <div className={`city-condition-icon ${getWeatherIconClass(cityWeather.weather[0].main)}`}></div>
+                      <div className="city-condition-text">{cityWeather.weather[0].main}</div>
+                  </div>
+
+                  
+                
+                
+
+                  
+
+
                   <div className="city-time">{formatTime(cityWeather.dt)}, {formatDate(cityWeather.dt)}</div>
          
                   <div className="city-temp-min">
@@ -85,8 +120,9 @@ const WeatherInfo = () => {
                   <img src='assets/arrow.png' alt=''></img>
                   {cityWeather.wind.speed} m/s {cityWeather.wind.deg} Degree</div>
                   <div className="city-sunrise">
-                  <h4>Sunrise: {formatTime(cityWeather.sys.sunrise)}</h4>
-                  <h4>Sunset: {formatTime(cityWeather.sys.sunset)}</h4>
+                  <p>Sunrise: {formatTime(cityWeather.sys.sunrise)}</p>
+
+                  <p>Sunset: {formatTime(cityWeather.sys.sunset)}</p>
                   </div>
                 </div>
               </div>
@@ -133,7 +169,7 @@ const WeatherInfo = () => {
           type="text"
           value={searchQuery}
           onChange={handleInputChange}
-          placeholder="Enter city"
+          placeholder="Enter a city"
         />
         <button onClick={handleSearch}>Add City</button>
       </div>

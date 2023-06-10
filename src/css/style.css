@@ -14,11 +14,13 @@ body {
 
 .header {
   background-image: url('../assets/Header bg.jpg'); /* Path to your header image */
-  min-height: 50vh;
+  min-height: 60vh;
   background-repeat: no-repeat; /* Prevent the background image from repeating */
   background-size: cover; /* Adjust the background size to cover the header */
   background-position: center; /* Adjust the background position to center */
   height: 30vh;
+  position: relative;
+  z-index: 1;
 }
 .weather {
   padding-top: 20px;
@@ -28,6 +30,8 @@ body {
   justify-content: center;
   align-items: center;
   padding-bottom: 10px;
+
+
 }
 
 
@@ -49,22 +53,19 @@ body {
 }
 
 
-
-
-
-
-
-
 #weather-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-55%, -9%);
   display: grid;
-  grid-template-columns: 1fr 1fr  ; /* 2 columns */
-  margin-left: 80px;
-  margin-right: 100px;
-  column-gap: 5px;
-  row-gap: 30px; 
+  grid-template-columns: 1fr 1fr;
+  margin-left: 60px;
+  row-gap: 30px;
   justify-items: center;
-  padding-top: 0.2rem;
   color: white;
+  z-index: 2;
+  margin-bottom: 20px;
 }
 
 
@@ -73,7 +74,7 @@ body {
 
 .city-card-top:last-child  {
   margin-right: 0; /* Remove the margin from the last card to prevent extra gap */
-  /* padding-bottom: 100px; */
+
 }
 
 .city-card{
@@ -81,15 +82,13 @@ body {
   grid-auto-flow: row;
   margin-left: 2vw;
   margin-right: 2vw;
-  /* border: 2px solid red; */
+ 
 }
 
 .city-card-top {
-  /* width: 578.78px;
-  height: 216.99px; */
+
   width: 500px;
   height: 200px;
-  /* margin: 0; */
   border-radius:  5px 5px  0 0;
   padding: 10px;
   color: #ffffff; /* White text color */
@@ -102,11 +101,9 @@ body {
 }
 
 .city-card-bottom{
-  /* width: 578.78px;
-  height: 216.99px; */
+
   width: 500px;
-  height: 200px;
-  /* margin: 0; */
+  height: 130px;
   padding: 10px; 
   border-radius: 0 0 5px 5px ;
   position: relative;
@@ -118,6 +115,7 @@ body {
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: bottom; 
+  margin-bottom: 20px;
 }
 
 
@@ -154,9 +152,7 @@ body {
   text-align: center;
 }
 
-.city-status {
-  text-align: center;
-}
+
 
 .city-card-top {
   display: grid;
@@ -186,15 +182,44 @@ body {
   font-size: 1rem;
 }
 
-.city-status{
-  grid-area: cs;
+.city-condition {
+  margin-top: -25px;
+  grid-area: cc;
+  display: grid;
+  gap: 1px;
+  grid-template-columns: 1fr 1fr ; /* Updated grid template columns */
+  align-items: center; /* Align items vertically */
+  padding-left: 10px; /* Adjust padding as needed */
   font-size: 1.2rem;
+  text-align: center;
+  background-repeat: no-repeat;
 }
+
+.city-condition-icon {
+  
+  height: 100px;
+  width: auto;
+  background-repeat: no-repeat;
+  background-position: center left 50px; 
+  order: 1;
+}
+
+.city-condition-text {
+  display: grid;
+  order: 2;
+  justify-content: left;
+}
+
 
 
 .city-temp-min{
   grid-area: tm;
-  font-size: 0.8rem;
+
+}
+
+.city-temp-min h4{
+  font-weight: 500;
+  padding-bottom: 2px;
 
 }
 
@@ -207,21 +232,27 @@ body {
   display: grid;
   background-repeat: no-repeat;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 10px;
+  grid-template-rows: 1fr 1fr 1fr;
   grid-template-areas: 
   "cp cw sr" 
   "ch cw sr"
   "cv cw sr";
   align-items: center;
+  background-image: url('../assets/line 3.png');
+  background-position: bottom 0px right 0px;
+  background-repeat: no-repeat;
+
 
 }
 
-.city-pressures{
+.city-pressure{
   grid-area: cp;
+  
 }
 
 .city-humidity{
   grid-area: ch;
+
 }
 
 .city-visibility{
@@ -230,15 +261,11 @@ body {
 
 .city-wind{
   grid-area: cw;
-  background-image: url('../assets/arrow.png');
-  align-items: center;
-  justify-content: center;
-  height: 5rem;
-  width: auto;
-  flex-wrap: nowrap;
-  padding-left: 35px; 
+  align-items: bottom;
+  padding-left: 10px;
+  align-content: end;
+  margin-top: 50px;
 
-  background-repeat: no-repeat;
   
   
 }
@@ -248,8 +275,9 @@ body {
 .city-sunrise{
   grid-area: sr;
   display: grid;
+  justify-content: center;
+  align-items: baseline;
   gap: 5px;
-  font-weight: 100;
 }
 
 
@@ -260,9 +288,11 @@ body {
 }
 
 .search-container input{
+  border: 0;
   background-color: #1f2128;
   border-radius:  5px 0 0 5px;
-  width: 422.66px;
+  /* width: 422.66px; */
+  width: 400px;
   color: white;
   width: 188.97 px;
   position: relative;
@@ -284,15 +314,44 @@ button {
 }
 
 
-footer{
-  margin-top: 2rem;
-  bottom: 0;
+
+
+footer {
+  margin-top: 60rem;
   padding: 20px;
-  position: relative;
+  position: sticky;
   background-color: #30333d;
   color: #7d7f85;
   text-align: center;
   font-size: 16px;
-  
-  /* z-index: 1; */
+  z-index: 3;
+}
+
+.weather-icon {
+  width: 50px;
+  height: 50px;
+}
+.weather-icon-broken-clouds {
+  background-image: url('../assets/Broken Clouds.png');
+}
+
+
+.weather-icon-clear-sky {
+  background-image: url('../assets/Clear Sky.png');
+}
+
+.weather-icon-few-clouds {
+  background-image: url('../assets/Few Clouds.png');
+}
+
+.weather-icon-light-rain{
+  background-image: url('../assets/Few Clouds.png');
+}
+
+.weather-icon-mist{
+  background-image: url('../assets/Few Clouds.png');
+}
+
+.weather-icon-clouds{
+  background-image: url('../assets/Few Clouds.png');
 }
