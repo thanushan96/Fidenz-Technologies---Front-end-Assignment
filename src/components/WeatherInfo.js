@@ -1,15 +1,14 @@
 import React, { useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import '../css/style.css';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import { citiesData } from '../data/citiesData';
 import { apiKey, baseUrl, unitType } from '../constants/apiHelper';
-import { processData } from '../constants/helpers';
+import { processData } from '../constants/helper';
 
 
 
 const WeatherInfo = () => {
+  console.log('Component rendering!');
   const fetchWeatherData = async () => {
     const cityCodes = citiesData.List.map(city => city.CityCode);
     const url = `${baseUrl}?id=${cityCodes.join(',')}&units=${unitType}&appid=${apiKey}`;
@@ -28,6 +27,7 @@ const WeatherInfo = () => {
 
 
   useEffect(() => {
+    console.log('Component is unmounting or condition changed!');
     fetchWeatherData()
       .then(weatherCards => {
         const weatherContainer = document.getElementById('weather-container');
@@ -40,12 +40,10 @@ const WeatherInfo = () => {
   
   return (
     <div>
-      <Header />
       
-        
-      <div id="weather-container"></div>
+         
+    <div id="weather-container"></div>
       
-      <Footer />
 
     </div>
   );
@@ -54,3 +52,5 @@ const WeatherInfo = () => {
 export default WeatherInfo;
 
 
+
+// change below
