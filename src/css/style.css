@@ -344,8 +344,8 @@ footer {
   background-image: url('../assets/Few Clouds.png');
 }
 
-.weather-icon-light-rain{
-  background-image: url('../assets/Few Clouds.png');
+.weather-icon-rain{
+  background-image: url('../assets/Rain.png');
 }
 
 .weather-icon-mist{

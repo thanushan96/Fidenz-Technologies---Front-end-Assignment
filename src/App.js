@@ -1,6 +1,6 @@
 // app.js
 import React from 'react';
-import WeatherInfo from './WeatherInfo';
+import WeatherInfo from './components/WeatherInfo';
 
 import './App.css';
 
