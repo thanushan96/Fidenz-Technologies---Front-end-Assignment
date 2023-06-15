@@ -1,4 +1,3 @@
-// app.js
 import React from 'react';
 import WeatherInfo from './components/WeatherInfo';
 import Header from './components/Header';
