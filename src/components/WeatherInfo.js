@@ -2,15 +2,9 @@ import React, { useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import '../css/style.css';
 import { citiesData } from '../data/citiesData';
-// import { apiKey, baseUrl, unitType } from '../constants/apiHelper';
 import { processData } from '../constants/helper';
-
 import { getCityCodes, generateUrl } from '../constants/apiHelper';
 
-
-
-
-// Modification start 
 
 
 const WeatherInfo = () => {
@@ -48,3 +42,5 @@ const WeatherInfo = () => {
 };
 
 export default WeatherInfo;
+
+

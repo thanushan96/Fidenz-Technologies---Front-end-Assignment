@@ -21,12 +21,14 @@ const CityCard = ({ cityCode, cityData, cityWeather }) => {
           <h4>Temp Min: {Math.floor(cityWeather.main.temp_min)}°C</h4>
           <h4>Temp Min: {Math.floor(cityWeather.main.temp_max)}°C</h4>
         </div>
+
       </div>
       <div className="city-card-bottom">
         <img src='assets/line.png' alt=''></img>
         <div className="city-pressure">Pressure: {cityWeather.main.pressure} hPa</div>
         <div className="city-humidity">Humidity: {cityWeather.main.humidity}%</div>
         <div className="city-visibility">Visibility: {cityWeather.visibility / 1000.0} km</div>
+        
         <div className="city-wind">
           <img src='assets/arrow.png' alt=''></img>
           {cityWeather.wind.speed} m/s {cityWeather.wind.deg} Degree

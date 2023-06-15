@@ -29,5 +29,3 @@ const processData = (weatherData, citiesData) => {
   
 
   export { processData };
-
-
